@@ -93,6 +93,11 @@ export default {
     popperOpts: {
       // type: Object,
       default: () => {}
+    },
+    focus: {
+      // Focus the menu when shown
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -199,7 +204,9 @@ export default {
       this.$emit('shown')
 
       // Focus on the menu container on show
-      this.$nextTick(this.focusMenu)
+      if (this.focus) {
+        this.$nextTick(this.focusMenu)
+      }
     },
     hideMenu() {
       this.whileOpenListen(false)
